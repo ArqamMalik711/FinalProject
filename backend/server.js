@@ -19,6 +19,11 @@ connectDB().catch((error) => {
 // Initialize express app
 const app = express();
 
+// Health check route
+app.get('/', (req, res) => {
+  res.json({ status: 'ok', message: 'Server is running' });
+});
+
 // Configure CORS options
 const corsOptions = {
   origin: [process.env.CLIENT_URL || 'http://localhost:3000'],
@@ -188,12 +193,14 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start server
-const PORT = process.env.PORT || 5005;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Main API: http://localhost:${PORT}`);
-  console.log(`Check routes at: http://localhost:${PORT}/routes`);
-  console.log(`Debug database status: http://localhost:${PORT}/debug/db-status`);
-  console.log(`Debug ads endpoint: http://localhost:${PORT}/debug/ads`);
-}); 
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 5005;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Main API: http://localhost:${PORT}`);
+  });
+}
+
+// Export for Vercel
+module.exports = app;
