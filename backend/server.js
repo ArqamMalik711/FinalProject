@@ -41,8 +41,24 @@ process.on('unhandledRejection', (reason, promise) => {
 const app = express();
 
 // Health check route
-app.get('/', (req, res) => {
-  res.json({ status: 'ok', message: 'Server is running' });
+app.get('/', async (req, res) => {
+  try {
+    // Test database connection
+    await mongoose.connection.db.admin().ping();
+    res.json({ 
+      status: 'ok', 
+      message: 'Server is running',
+      dbStatus: 'connected',
+      env: process.env.NODE_ENV
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      status: 'error', 
+      message: 'Server is running but database connection failed',
+      error: error.message,
+      env: process.env.NODE_ENV
+    });
+  }
 });
 
 // Configure CORS options
