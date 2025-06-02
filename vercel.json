@@ -3,13 +3,17 @@
   "builds": [
     {
       "src": "backend/server.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["backend/**"]
+      }
     },
     {
       "src": "my-app/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "build"
+        "distDir": "build",
+        "buildCommand": "cd my-app && npm install && npm run build"
       }
     }
   ],
@@ -19,12 +23,11 @@
       "dest": "backend/server.js"
     },
     {
-      "src": "/",
-      "dest": "my-app/build/index.html"
+      "handle": "filesystem"
     },
     {
-      "src": "/(.+)",
-      "dest": "my-app/build/$1"
+      "src": "/.*",
+      "dest": "my-app/build/index.html"
     }
   ]
 }

@@ -1,4 +1,12 @@
 {
+  "name": "carwow-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": ["my-app", "backend"],
+  "scripts": {
+    "build": "cd my-app && npm run build",
+    "start": "cd backend && npm start"
+  },
   "dependencies": {
     "@google/generative-ai": "^0.24.1"
   }
