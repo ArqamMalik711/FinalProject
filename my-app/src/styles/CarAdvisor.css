@@ -1,0 +1,337 @@
+.advisor-container {
+  min-height: 100vh;
+  background-color: var(--background-color, #f9f9f9);
+  font-family: var(--font-family, 'Inter', sans-serif);
+}
+
+.advisor-hero {
+  position: relative;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  margin: 0;
+  background-color: #1e1e1e;
+  position: relative;
+}
+
+.advisor-hero-content {
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.advisor-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+  font-weight: 800;
+  color: white;
+}
+
+.advisor-hero p {
+  font-size: 1rem;
+  opacity: 0.8;
+  color: #ffffff;
+  margin-top: 0.5rem;
+}
+
+.advisor-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 20px;
+}
+
+.prompt-form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.prompt-input-container {
+  position: relative;
+  margin-top: 2rem;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.submit-button {
+  display: block;
+  width: fit-content;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: white;
+  background-color: #000000;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.prompt-input {
+  width: 100%;
+  min-height: 120px;
+  padding: 1.25rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  resize: vertical;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  color: var(--text-color, #1e1e1e);
+  background-color: var(--input-background, #ffffff);
+}
+
+.prompt-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.1);
+}
+
+.prompt-input:disabled {
+  background-color: #f9f9f9;
+  cursor: not-allowed;
+}
+
+.prompt-examples {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.prompt-examples p {
+  color: #64748b;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.prompt-examples ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.prompt-examples li {
+  color: #64748b;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.prompt-examples li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+}
+
+.prompt-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 250px;
+  margin: 2rem auto 0;
+  padding: 1rem 2rem;
+  background: var(--primary-gradient, linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color, #2563eb) 100%));
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.prompt-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.prompt-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background-color: #e2e8f0;
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #333;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 2rem auto;
+  max-width: 800px;
+  text-align: center;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.error-message i {
+  font-size: 1.1rem;
+}
+
+.recommendations {
+  margin-top: 3rem;
+}
+
+.recommendations h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  color: #1e1e1e;
+}
+
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.recommendation-card {
+  background: var(--card-background, white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+  height: 100%;
+}
+
+.recommendation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.car-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.car-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.car-details {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 0.75rem;
+}
+
+.car-details h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e1e1e;
+  margin: 0;
+}
+
+.car-details p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem;
+}
+
+.car-features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin: 0.75rem 0;
+  padding: 0;
+}
+
+.feature-tag {
+  color: #4b5563;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+  line-height: 1.4;
+}
+
+.feature-tag i {
+  color: var(--primary-color);
+  font-size: 0.8rem;
+}
+
+.car-price {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #000000;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+  border-top: 1px solid #eee;
+}
+
+@media (max-width: 768px) {
+  .advisor-hero {
+    height: 150px;
+  }
+
+  .advisor-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .prompt-input-container {
+    margin-top: -30px;
+    padding: 1.5rem;
+  }
+
+  .prompt-examples {
+    font-size: 0.85rem;
+  }
+
+  .recommendation-card {
+    padding: 1rem;
+  }
+
+  .car-features {
+    gap: 0.4rem;
+  }
+
+  .feature-tag {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+} 
