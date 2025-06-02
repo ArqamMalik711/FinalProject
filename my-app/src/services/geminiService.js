@@ -1,13 +1,3 @@
-// Check if we're in the correct environment
-const API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
-console.log('API Key status:', API_KEY ? 'Present' : 'Missing');
-console.log('API Key length:', API_KEY ? API_KEY.length : 0);
-
-// Ensure API key exists and is not the placeholder
-if (!API_KEY || API_KEY === 'your_gemini_api_key_here') {
-  console.error('Please set up your Gemini API key in the .env file');
-}
-
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export const getCarRecommendations = async (userPrompt) => {

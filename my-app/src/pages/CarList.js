@@ -37,7 +37,7 @@ const CarList = () => {
   // Initialize pendingFilters with current filters
   useEffect(() => {
     setPendingFilters(filters);
-  }, [filters]);
+  }, [filters, setPendingFilters]);
 
   useEffect(() => {
     const loadCars = async () => {
