@@ -126,7 +126,8 @@ const routes = [
   { path: '/api/featured-cars', route: './routes/featuredCarRoutes' },
   { path: '/api/ads', route: './routes/carAds' },
   { path: '/api/users', route: './routes/userRoutes' },
-  { path: '/api/car-advisor', route: './routes/carAdvisor' }
+  { path: '/api/car-advisor', route: './routes/carAdvisor' },
+  { path: '/api/news', route: './routes/newsRoutes' }
 ];
 
 // Load routes with error handling
