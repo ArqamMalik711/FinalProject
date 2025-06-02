@@ -3,21 +3,17 @@ require('dotenv').config();
 
 const connectDB = async () => {
   try {
-    if (!process.env.MONGODB_URI) {
-      throw new Error('MONGODB_URI environment variable is not defined');
-    }
-    const MONGODB_URI = process.env.MONGODB_URI;
-    const conn = await mongoose.connect(MONGODB_URI, {
+    // MongoDB connection using environment variable or default URI
+    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://carwow-admin:carwow123@labcluster.bfvm47n.mongodb.net/carwow', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     
     console.log(`MongoDB Connected: ${conn.connection.host}`);
-    return conn;
   } catch (error) {
     console.error(`Error: ${error.message}`);
     process.exit(1);
   }
 };
 
-module.exports = connectDB;
+module.exports = connectDB; 

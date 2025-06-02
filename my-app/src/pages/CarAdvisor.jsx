@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/CarAdvisor.css';
 import { getCarRecommendations } from '../services/geminiService';
-import { FaCar, FaSearch, FaCheckCircle } from 'react-icons/fa';
+import { FaSearch, FaCheckCircle } from 'react-icons/fa';
 
 const CarAdvisor = () => {
   const [prompt, setPrompt] = useState('');
