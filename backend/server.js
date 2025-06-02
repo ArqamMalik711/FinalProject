@@ -99,6 +99,27 @@ app.use((req, res, next) => {
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' }); // This sets up a basic configuration
 
+// Debug route to test database connection
+app.get('/debug/db', async (req, res) => {
+  try {
+    const Car = require('./models/Car');
+    const count = await Car.countDocuments();
+    res.json({
+      success: true,
+      dbConnected: mongoose.connection.readyState === 1,
+      totalCars: count,
+      env: process.env.NODE_ENV,
+      mongoUri: process.env.MONGODB_URI?.substring(0, 20) + '...' // Only show part of the URI for security
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+    });
+  }
+});
+
 // Load routes in order
 const routes = [
   { path: '/api/cars', route: './routes/carRoutes' },
@@ -117,6 +138,16 @@ routes.forEach(route => {
   } catch (error) {
     console.error(`Error loading route ${route.path}:`, error);
   }
+});
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error('Global error:', err);
+  res.status(500).json({
+    success: false,
+    error: process.env.NODE_ENV === 'development' ? err.message : 'Server Error',
+    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+  });
 });
 
 // Debug route - list all registered routes
